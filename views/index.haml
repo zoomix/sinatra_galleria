@@ -1,8 +1,8 @@
 !!!
 %head
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
-  <script src="galleria/galleria-1.2.7.min.js"></script>
-  <script src="galleria/plugins/history/galleria.history.min.js"></script>
+  <script type="text/javascript" src="jquery.colorbox-min.js"></script>
+  %link(rel='stylesheet' href='css/colorbox.css')
   %link(rel='stylesheet' href='bootstrap/css/bootstrap.min.css')
   %link(rel='stylesheet' href='bootstrap/css/bootstrap-responsive.min.css')
   %link(rel='stylesheet' href='css/default.css')
@@ -12,16 +12,13 @@
 
   #galleria
     - Images.list_images.map do |image|
-      %a(href = "./photos/#{image}")
+      %a(href = "./photos/#{image}" class="stuff")
         %img(src = "./photos/#{image}"){'data-title' => "data-title-#{image}", 'data-description' => "data-description-#{image}"}
     end
 
-  %script
-    Galleria.loadTheme('galleria/themes/classic/galleria.classic.min.js');
-    Galleria.run('#galleria');
-    Galleria.configure({lightbox: true});
-
   %p no more dude
 
+  %script
+    $(".stuff").colorbox({rel:'stuff', maxWidth:'95%', maxHeight:'95%'});
 
   <script src="/bootstrap/js/bootstrap.min.js">

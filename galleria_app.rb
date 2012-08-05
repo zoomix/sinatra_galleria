@@ -1,6 +1,9 @@
+$: << File.expand_path('../lib', __FILE__)
+
+require 'bundler/setup'
 require 'sinatra'
 require 'haml'
-require_relative 'lib/images'
+require 'images'
 
 get '/' do
   haml :index

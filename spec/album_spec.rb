@@ -26,7 +26,7 @@ describe Album do
     end
 
     it 'has first image' do
-      album1.should_receive(:get_image).with(anything, 'first_image.jpg')
+      album1.should_receive(:get_image).with('first_image.jpg')
       album1.images
     end    
   end

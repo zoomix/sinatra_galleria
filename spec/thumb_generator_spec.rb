@@ -6,7 +6,8 @@ describe ThumbGenerator do
   let (:image1) { Image.new(File.expand_path('../resources', __FILE__), 'album1', 'first_image.jpg') }
 
   def clean_up
-    puts `rm -rf resources/thumbs/album1` if File.exists?('resources/thumbs/album1')
+    path = File.expand_path('../resources/thumbs/album1', __FILE__)
+    FileUtils.rm_rf(path) if File.exists?(path)
   end
 
   before do
@@ -14,11 +15,13 @@ describe ThumbGenerator do
   end
 
   after do
-    # clean_up
+    clean_up
   end
 
   it 'should create thumb' do
     ThumbGenerator.generate_thumb(image1)
+    img = Image.new(File.expand_path('../resources', __FILE__), 'album1', 'first_image.jpg')
+    img.thumb_url.should == 'thumbs/album1/first_image.jpg'
   end
 
 end

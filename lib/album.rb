@@ -15,7 +15,7 @@ class Album
   end
 
   def images
-    list_file_names(@folder).map {|file_name| get_image(@path, file_name)}
+    list_file_names(@folder).map {|file_name| get_image(file_name)}
   end
 
   def valid?
@@ -24,8 +24,8 @@ class Album
 
   private
 
-  def get_image(album_name, file_name)
-    Image.new(@path, album_name, file_name)
+  def get_image(file_name)
+    Image.new(@path, @name, file_name)
   end
 
   def list_file_names(folder)

@@ -2,7 +2,7 @@ source :rubygems
 
 gem 'sinatra'
 gem 'haml'
-gem 'image_sorcery'
+gem 'rmagick'
 
 group 'test' do
   gem 'rspec'

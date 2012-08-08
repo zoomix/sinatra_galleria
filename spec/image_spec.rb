@@ -2,15 +2,11 @@ require 'Image'
 
 describe Image do
 
-  let (:image1) { Image.new(File.expand_path('../resouces/album1/first_image.jpg', __FILE__)) }
-  let (:image2) { Image.new(File.expand_path('../resouces/album2/first_image.jpg', __FILE__)) }
+  let (:image1) { Image.new(File.expand_path('../resources', __FILE__), 'album1', 'first_image.jpg') }
+  let (:image2) { Image.new(File.expand_path('../resources', __FILE__), 'album2', 'first_image.jpg') }
 
   it 'should get the name' do
-    image1.name.should == 'first_image'
-  end
-
-  it 'should have the path' do
-    image1.path.should == File.expand_path('../resouces/album1/first_image.jpg', __FILE__)
+    image1.name.should == 'first_image.jpg'
   end
 
   it 'should have the url' do
@@ -22,8 +18,8 @@ describe Image do
       image1.thumb.should be_nil
     end
 
-    it 'should have nil thumb path' do
-      image1.thumb_path.should be_nil
+    it 'should have thumb path' do
+      image1.thumb_path.should_not be_nil
     end
 
     it 'should have nil thumb url' do
@@ -36,12 +32,8 @@ describe Image do
       image2.thumb.should_not be_nil
     end
 
-    it 'should have a thumb path' do
-      image2.thumb_path.should == File.expand_path('../resouces/thumbs/album2/first_image.jpg', __FILE__)
-    end
-
     it 'should have a thumb url' do
-      image2.thumb_url.should == 'thumbs/album1/first_image.jpg'
+      image2.thumb_url.should == 'thumbs/album2/first_image.jpg'
     end
   end
 

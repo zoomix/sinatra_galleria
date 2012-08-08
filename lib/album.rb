@@ -2,13 +2,14 @@ class Album
 
   attr :name
 
-  def initialize(path)
-    @path = path
-    @name = @path.split('/').last
+  def initialize(base_path, album_name)
+    @path = File.expand_path("photos/#{album_name}", base_path)
+    @name = album_name
     begin
-      @folder = Dir.new(path)
+      @folder = Dir.new(@path)
       @valid = true
     rescue Exception => e
+      puts e.message
       @valid = false
     end
   end
@@ -24,7 +25,7 @@ class Album
   private
 
   def get_image(album_name, file_name)
-    Image.new("#{@path}/#{file_name}")
+    Image.new(@path, album_name, file_name)
   end
 
   def list_file_names(folder)

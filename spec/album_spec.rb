@@ -3,11 +3,11 @@ require 'Image'
 
 describe Album do
 
-  let(:album1) { Album.new(File.expand_path('../resources/album1', __FILE__)) }
+  let(:album1) { Album.new(File.expand_path('../resources', __FILE__), 'album1') }
 
   context 'name' do
     it 'sets the album as invalid if the album is wrong' do
-      a = Album.new(File.expand_path('nothing'))
+      a = Album.new(File.expand_path('nothing'), '')
       a.should_not be_valid
     end
 

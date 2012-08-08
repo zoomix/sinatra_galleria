@@ -2,10 +2,9 @@ class Thumb
 
   attr :path, :url
 
-  def initialize(path)
-    @path = path
-    path_array = path.split('/')
-    @url = "thumbs/#{path_array[-2]}/#{path_array[-1]}"
+  def initialize(base_path, album_name, file_name)
+    @path = File.expand_path("thumbs/#{album_name}/#{file_name}", base_path)
+    @url = "thumbs/#{album_name}/#{file_name}"
   end
 
 

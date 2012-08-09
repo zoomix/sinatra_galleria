@@ -5,7 +5,7 @@ module ThumbGenerator
 
   def self.generate_thumb(original_image)
     dir_path = File.dirname(original_image.thumb_path)
-    Dir.mkdir(dir_path) unless Dir.exists?(dir_path)
+    FileUtils.mkdir_p(dir_path) unless Dir.exists?(dir_path)
 
     img = Magick::Image.read(original_image.path).first
     thumb = img.resize_to_fill(160, 160)

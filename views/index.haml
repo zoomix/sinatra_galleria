@@ -10,12 +10,14 @@
 
   #galleria
     - Albums.list.each do |album| 
-      %h2= album.name
-      - album.images.each do |image|
-        %a(href = "#{image.url}" class = "#{album.name}")
-          %img(src = "#{image.thumb_url}" class='thumb')
+      %br{style:'clear:left'}
+      %div
+        %h2= album.name
+        - album.images.each do |image|
+          %a(href = "#{image.url}" class = "#{album.name.tr(' ', '_')}")
+            %img(src = "#{image.thumb_url}" class='thumb')
 
-      %script
-        $(".#{album.name}").colorbox({rel:"#{album.name}", maxWidth:'95%', maxHeight:'95%'});
+        %script
+          $(".#{album.name.tr(' ', '_')}").colorbox({rel:"#{album.name.tr(' ', '_')}", maxWidth:'95%', maxHeight:'95%'});
 
   <script src="/bootstrap/js/bootstrap.min.js">

@@ -7,18 +7,15 @@
   %link(rel='stylesheet' href='bootstrap/css/bootstrap-responsive.min.css')
   %link(rel='stylesheet' href='css/default.css')
 %body
-  %h1 dude!
-  %p this is your web gallery
 
   #galleria
-    - Images.list_images.map do |image|
-      %a(href = "./photos/#{image}" class="stuff")
-        %img(src = "./photos/#{image}"){'data-title' => "data-title-#{image}", 'data-description' => "data-description-#{image}"}
-    end
+    - Albums.list.each do |album| 
+      %h2= album.name
+      - album.images.each do |image|
+        %a(href = "#{image.url}" class = "#{album.name}")
+          %img(src = "#{image.thumb_url}" class='thumb')
 
-  %p no more dude
-
-  %script
-    $(".stuff").colorbox({rel:'stuff', maxWidth:'95%', maxHeight:'95%'});
+      %script
+        $(".#{album.name}").colorbox({rel:"#{album.name}", maxWidth:'95%', maxHeight:'95%'});
 
   <script src="/bootstrap/js/bootstrap.min.js">

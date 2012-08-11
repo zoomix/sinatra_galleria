@@ -1,2 +1,2 @@
-rvm use ruby-1.9.3-p0@sinatra_galleria
+rvm use --create ruby-1.9.3-p0@sinatra_galleria
 

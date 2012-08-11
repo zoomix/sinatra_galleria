@@ -1,4 +1,4 @@
-require 'Thumb'
+require 'thumb'
 
 class Image
 

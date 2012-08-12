@@ -14,6 +14,10 @@ class Image
     @thumb = Thumb.new(base_path, album_name, file_name) if File.exists?(thumb_path)
   end
 
+  def valid?
+    @thumb
+  end
+
   def thumb_url
     @thumb.url if @thumb
   end

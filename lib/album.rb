@@ -36,7 +36,7 @@ class Album
   end
 
   def list_file_names(folder)
-    folder.select {|file_name| file_name[0] != '.'}
+    folder.select {|file_name| file_name[0] != '.'}.sort
   end
 
 end

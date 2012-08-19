@@ -1,5 +1,6 @@
 body { background-color: black; margin: 0px; padding: 0px}
 
 .thumb { display: block; float: left}
-h2 {clear: left; margin-top: 2em}
+h2 {clear: left; margin-top: 2em; color: #306D4D}
 
+.compact { height: 160px; overflow: hidden;}

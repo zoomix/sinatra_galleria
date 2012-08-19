@@ -1,7 +1,9 @@
 !!!
+- require 'json'
 %head
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+  <script src="jquery.js"></script>
   <script type="text/javascript" src="jquery.touch-gallery-1.0.0.min.js"></script>
+  <script type="text/javascript" src="album_adapter.js"></script>
   %link(rel='stylesheet' href='css/colorbox.css')
   %link(rel='stylesheet' href='bootstrap/css/bootstrap.min.css')
   %link(rel='stylesheet' href='bootstrap/css/bootstrap-responsive.min.css')
@@ -10,15 +12,16 @@
 
   #galleria
     - Albums.list.each do |album| 
-      %br{style:'clear:left'}
-      %div
-        %h2= album.name
-        - album.images.each do |image|
-          - next unless image.valid?
-          %a(href = "#{image.url}" class = "#{album.name.tr(' ', '_')}")
-            %img(src = "#{image.thumb_url}" class='thumb')
+      - album_name = album.name.tr(' ','_');
+      - urls = album.images.select(&:valid?).map { |image| {:image => image.url, :thumb => image.thumb_url} }
 
-        %script
-          $(".#{album.name.tr(' ', '_')}").touchGallery();
+      %br{style:'clear:left'}
+      %h2{:onClick => "javascript:toggle('#{album_name}')"}= "#{album.name} [toggle]"
+      %div{:id => album.name.tr(' ','_') + '_container', :class => 'album_bg compact'}
+      %script
+        var album = new Album('#{album_name}', 160, #{urls.to_json});
+        albums['#{album_name}'] = album;
+        album.renderAlbum();
+
 
   <script src="/bootstrap/js/bootstrap.min.js">

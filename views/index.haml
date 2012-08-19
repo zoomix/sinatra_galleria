@@ -1,7 +1,7 @@
 !!!
 %head
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
-  <script type="text/javascript" src="jquery.colorbox-min.js"></script>
+  <script type="text/javascript" src="jquery.touch-gallery-1.0.0.min.js"></script>
   %link(rel='stylesheet' href='css/colorbox.css')
   %link(rel='stylesheet' href='bootstrap/css/bootstrap.min.css')
   %link(rel='stylesheet' href='bootstrap/css/bootstrap-responsive.min.css')
@@ -19,6 +19,6 @@
             %img(src = "#{image.thumb_url}" class='thumb')
 
         %script
-          $(".#{album.name.tr(' ', '_')}").colorbox({rel:"#{album.name.tr(' ', '_')}", maxWidth:'95%', maxHeight:'95%'});
+          $(".#{album.name.tr(' ', '_')}").touchGallery();
 
   <script src="/bootstrap/js/bootstrap.min.js">

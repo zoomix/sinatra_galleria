@@ -13,7 +13,7 @@
   #galleria
     - Albums.list.each do |album| 
       - album_name = album.name.tr(' ','_');
-      - urls = album.images.select(&:valid?).map { |image| {:image => image.url, :thumb => image.thumb_url} }
+      - urls = album.images.select(&:valid?).map { |image| {:image => image.url.force_encoding('utf-8'), :thumb => image.thumb_url.force_encoding('utf-8')} }
 
       %br{style:'clear:left'}
       %h2{:onClick => "javascript:toggle('#{album_name}')"}= "#{album.name} [toggle]"

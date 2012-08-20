@@ -14,7 +14,9 @@ var Album = function(albumName, thumbSize, urls) {
 
     $('#' + albumName + '_container').html(htmlz);
     $('#' + albumName + '_container').css('height', self.expanded? 'auto' : '');
-    $('\.' + albumName).touchGallery();
+    //$('\.' + albumName).touchGallery();
+    $('\.' + albumName).photoSwipe();
+
   };
 
   self.getAlbumHtml = function(nofImagesOnFirstLine, fullyVisible) {
@@ -23,7 +25,7 @@ var Album = function(albumName, thumbSize, urls) {
       if(urls[i]) {
         htmlz += "<a class='" + albumName + "' href='" + urls[i]['image'] + "'>";
         if(fullyVisible || i < nofImagesOnFirstLine) {
-          htmlz += "<img src='" + urls[i]['thumb'] + "'>";
+          htmlz += "<img src='" + urls[i]['thumb'] + "' alt='" + albumName + "'>";
         }
         htmlz += "</a>";
       }

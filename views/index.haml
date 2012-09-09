@@ -11,8 +11,8 @@
   
   / %link(rel='stylesheet' href='css/colorbox.css')
   %link(rel='stylesheet' href='css/photoswipe.css')
-  / %link(rel='stylesheet' href='bootstrap/css/bootstrap.min.css')
-  / %link(rel='stylesheet' href='bootstrap/css/bootstrap-responsive.min.css')
+  %link(rel='stylesheet' href='bootstrap/css/bootstrap.min.css')
+  %link(rel='stylesheet' href='bootstrap/css/bootstrap-responsive.min.css')
   %link(rel='stylesheet' href='css/default.css')
 %body
 
@@ -22,7 +22,9 @@
       - urls = album.images.select(&:valid?).map { |image| {:image => image.url.force_encoding('utf-8'), :thumb => image.thumb_url.force_encoding('utf-8')} }
 
       %br{style:'clear:left'}
-      %h2{:onClick => "javascript:toggle('#{album_name}')"}= "#{album.name} [toggle]"
+      %h2{:onClick => "javascript:toggle('#{album_name}')"}
+        #{album.name}
+        %a.btn.btn-primary.rightmost{'type'=>"button", 'data-toggle'=>"button"} <i class='icon-th'></i>&nbsp;Toggle all
       %div{:id => album.name.tr(' ','_') + '_container', :class => 'album_bg compact'}
       %script
         var album = new Album('#{album_name}', 160, #{urls.to_json});

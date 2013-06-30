@@ -1,0 +1,47 @@
+set :domain, "YOUR.SEVER.com"
+set :application, "yapa"
+set :deploy_to, "/var/www/apps/#{domain}"
+ 
+set :user, "YOUR_USER_ON_YOUR_SERVER"
+set :use_sudo, false
+ 
+role :web, domain
+role :app, domain
+ 
+set :repository, "." 
+set :scm, :none 
+set :deploy_via, :copy  #Deploy by copying all the code. Note! This will also copy any local images you have in photos/thums do.. Yeah. Don't do that.
+
+desc 'deploy'
+namespace :deploy do
+  task :start do ; end
+  task :stop do ; end
+
+  # Assumes you are using Passenger
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+  end
+ 
+  task :finalize_update, :except => { :no_release => true } do
+    run "chmod -R g+w #{latest_release}" if fetch(:group_writable, true)
+ 
+    # mkdir -p is making sure that the directories are there for some SCM's that don't save empty folders
+    run <<-CMD
+      rm -rf #{latest_release}/log &&
+      mkdir -p #{latest_release}/public &&
+      mkdir -p #{latest_release}/tmp &&
+      ln -s #{shared_path}/log #{latest_release}/log
+    CMD
+
+  end
+end
+
+after "deploy:create_symlink","customs:symlink"
+namespace :customs do
+  task :symlink, :roles => :app do
+    run <<-CMD
+      ln -nfs /MNT/BARGAIN/TEMPSTUFF/thumbs #{release_path}/public/thumbs &&
+      ln -nfs /YOUR/DROPBOX/FOLDER/photos #{release_path}/public/photos
+    CMD
+  end
+end

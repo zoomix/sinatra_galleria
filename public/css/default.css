@@ -13,5 +13,5 @@ h2 {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#45484d',GradientType=0 ); /* IE6-9 */
 }
 
-.compact { height: 160px; overflow: scroll;}
+.compact { height: 160px; overflow: hidden;}
 .rightmost {float: right; margin: 0.2em;}

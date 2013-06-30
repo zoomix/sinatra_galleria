@@ -4,7 +4,6 @@
   <script type="text/javascript" src="klass.min.js"></script>
   <script src="jquery.min.js"></script>
   <script type="text/javascript" src="code.photoswipe.jquery-3.0.5.min.js"></script>
-  <script type="text/javascript" src="jquery.lazyload.min.js"></script>
   <script type="text/javascript" src="album_adapter.js"></script>
   
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
@@ -27,7 +26,6 @@
         #{album.name}
         %a.btn.btn-primary.rightmost{'type'=>"button", 'data-toggle'=>"button"} <i class='icon-th'></i>&nbsp;Toggle all
       %div{:id => album.name.tr(' ','_') + '_container', :class => 'album_bg compact'}
-        %div{:id => album.name.tr(' ','_') + '_inner'}
       %script
         var album = new Album('#{album_name}', 160, #{urls.to_json});
         albums['#{album_name}'] = album;

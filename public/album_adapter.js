@@ -14,7 +14,6 @@ var Album = function(albumName, thumbSize, urls) {
 
     $('#' + albumName + '_container').html(htmlz);
     $('#' + albumName + '_container').css('height', self.expanded? 'auto' : '');
-    //$('\.' + albumName).touchGallery();
     $('\.' + albumName).photoSwipe();
 
   };
@@ -30,11 +29,32 @@ var Album = function(albumName, thumbSize, urls) {
         htmlz += "</a>";
       }
     }
-    // htmlz += "<br style='clear:both' /><div class='toggler' onClick='javascript:toggle(\"" + albumName + "\")'>toggle</div>"
     return htmlz;
   };
 
   return this;
+}
+
+var Albums = function() {
+  var self = this;
+  self.page = 0;
+
+  self.moreAlbums = function() {
+    self.page += 1;
+    $.get('/page?page=' + self.page, function(data) {
+      $('#galleria').append(data) }
+    );
+  };
+
+  return this;
+}
+
+var setInfiniteFetcher = function(elementId) {
+  $(elementId).waypoint(function(direction) {
+    if(direction == 'down') {
+      albumKeeper.moreAlbums();
+    }
+  },  { offset: '100%' });
 }
 
 var toggle = function(albumName) {

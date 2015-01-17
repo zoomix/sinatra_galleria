@@ -1,5 +1,5 @@
-require 'Album'
-require 'Image'
+require 'album'
+require 'image'
 
 describe Album do
 

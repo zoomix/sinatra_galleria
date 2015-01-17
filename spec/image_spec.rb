@@ -1,4 +1,4 @@
-require 'Image'
+require 'image'
 
 describe Image do
 

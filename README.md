@@ -17,6 +17,29 @@ It uses [photoswipe](http://www.photoswipe.com/) for displaying photos. Although
 
 
 ## The deal.
+
+#### Run in docker
+
+You mount in your photos and a thumbnail folder. Upon start the server will run through your photos and create thumbnails. Mount these somewhere where you don't care. It won't touch your photos so.. they can be read only if you like.. or whatever.
+
+    docker run -v /mnt/mydisk/Album/photos:/sinatra_galleria/public/photos \
+               -v /mnt/mydisk/Album/thumbs:/sinatra_galleria/public/thumbs \
+               -p 9292:9292 \
+               zoomix/sinatra_galleria
+
+It.. it should refresh the thumbnails periodically. Except it doesn't right now. Imma look into that though.. Should fix it in the dockerfile itself. I tried creating a cron that does it nightly, but something's weird. It doesn't seem to want to run. Whatever. I'll get to it.
+
+Right now you have to do it manually.
+
+    docker run -v /mnt/mydisk/Album/photos:/sinatra_galleria/public/photos \
+               -v /mnt/mydisk/Album/thumbs:/sinatra_galleria/public/thumbs \
+               -p 9292:9292 \
+               -w /sinatra_galleria \
+               zoomix/sinatra_galleria \
+               rake thumb_gen
+
+
+
 #### Folder setup
 
 The folder setup:
@@ -35,7 +58,21 @@ The folder setup:
 
 #### Running locally
 
-Uses [RVM](http://rvm.io) and bundler. So,
+I sincerilly recommend using docker, as above, and mounting in tyour source folder and starting a bash. Something like this.
+
+    docker run -v /Users/zoomix/repos/sinatra_galleria:/sinatra_galleria \
+               -p 9292:9292 \
+               -w /sinatra_galleria \
+               zoomix/sinatra_galleria \
+               bash
+
+.. that way you get all the environment and all dependencies without making a mess of your development machine. After that, you can just go
+
+    bundle
+    bundle exec rspec spec
+
+
+If you're not into sanity and eat imagemagick dependency trees for breakfast, you can go ahead and use [RVM](http://rvm.io) and bundler.
 
      gem install bundler
      bundle
@@ -62,12 +99,14 @@ Then connect your browser to whatever port it says.
 
 #### Deploying on server
 
-I run phusion passenger on my ubuntu apache server. Deploy with capistrano. There's an example conf based on what i use that you may toy around with.
+I used to run phusion passenger on my ubuntu apache server. Deploy with capistrano. There's an example conf based on what i use that you may toy around with.
+
+I have since tasted the sweet sweet taste of docker freedom. I am now on my way to recovery. They have a programme. You get a sponsor. There's some sort of chips embedded in the system, but I haven't figured that out yet..
 
 
-## Why, oh God why?
+## Why, oh God, WHY?
 
-I don't know. Masochism? Maybe? That's certainly a part of it.
+I don't know. Masochism? Maybe? That's certainly a part of it. It doesn't really work the way I'd like. But what does ever. =/
 
 
 ## License

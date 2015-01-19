@@ -9,7 +9,7 @@ module ThumbGenerator
 
     begin
       img = Magick::Image.read(original_image.path).first
-      thumb = img.resize_to_fill(160, 160)
+      thumb = img.auto_orient().resize_to_fill(160, 160)
       thumb.write(original_image.thumb_path) {self.quality = 70}
 
       img.destroy!

@@ -13,6 +13,7 @@ h2 {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#45484d',GradientType=0 ); /* IE6-9 */
 }
 
-.compact { height: 160px; overflow: hidden;}
-.rightmost {float: right; margin: 0.2em;}
+.compact { height: 160px; overflow: hidden; width: 200% }
+.rightmost {position: absolute; right:0; margin: 0.2em;}
 .more_albums {position: relative; top: 2em;}
+#galleria { width: 100%; overflow-x: hidden}

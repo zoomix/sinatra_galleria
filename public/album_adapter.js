@@ -9,11 +9,16 @@ var Album = function(albumName, thumbSize, urls) {
 
   self.renderAlbum = function() {
     var nofImagesOnFirstLine = Math.floor($(window).width() / thumbSize);
+    nofImagesOnFirstLine += 1;
 
     var htmlz = self.getAlbumHtml(nofImagesOnFirstLine, self.expanded);
 
     $('#' + albumName + '_container').html(htmlz);
-    $('#' + albumName + '_container').css('height', self.expanded? 'auto' : '');
+    if(self.expanded) {
+      $('#' + albumName + '_container').removeClass('compact');
+    } else {
+      $('#' + albumName + '_container').addClass('compact');
+    }
     $('\.' + albumName).photoSwipe();
 
   };

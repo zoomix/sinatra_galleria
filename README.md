@@ -25,7 +25,7 @@ You mount in your photos and a thumbnail folder. Upon start the server will run 
     docker run -v /mnt/mydisk/Album/photos:/sinatra_galleria/public/photos \
                -v /mnt/mydisk/Album/thumbs:/sinatra_galleria/public/thumbs \
                -p 9292:9292 \
-               zoomix/sinatra_galleria
+               zoomix/sinatra-galleria
 
 It.. it should refresh the thumbnails periodically. Except it doesn't right now. Imma look into that though.. Should fix it in the dockerfile itself. I tried creating a cron that does it nightly, but something's weird. It doesn't seem to want to run. Whatever. I'll get to it.
 
@@ -35,7 +35,7 @@ Right now you have to do it manually.
                -v /mnt/mydisk/Album/thumbs:/sinatra_galleria/public/thumbs \
                -p 9292:9292 \
                -w /sinatra_galleria \
-               zoomix/sinatra_galleria \
+               zoomix/sinatra-galleria \
                rake thumb_gen
 
 
@@ -63,7 +63,7 @@ I sincerilly recommend using docker, as above, and mounting in tyour source fold
     docker run -v /Users/zoomix/repos/sinatra_galleria:/sinatra_galleria \
                -p 9292:9292 \
                -w /sinatra_galleria \
-               zoomix/sinatra_galleria \
+               zoomix/sinatra-galleria \
                bash
 
 .. that way you get all the environment and all dependencies without making a mess of your development machine. After that, you can just go

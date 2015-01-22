@@ -28,9 +28,9 @@ var Album = function(albumName, thumbSize, urls) {
     var htmlz = '';
     for(var i = 0; i < urls.length; i++) {
       if(urls[i]) {
-        htmlz += "<a class='" + albumName + "' href='" + urls[i]['image'] + "'>";
+        htmlz += "<a class='" + albumName + "' href='" + urls[i]['src'] + "'>";
         if(fullyVisible || i < nofImagesOnFirstLine) {
-          htmlz += "<img src='" + urls[i]['thumb'] + "' alt='" + albumName + "'>";
+          htmlz += "<img src='" + urls[i]['msrc'] + "' alt='" + albumName + "'>";
         }
         htmlz += "</a>";
       }
@@ -41,8 +41,8 @@ var Album = function(albumName, thumbSize, urls) {
   self.createSlides = function() {
     for (var i = 0; i < urls.length; i++) {
       var imgurl = urls[i];
-      self.slides.push( { src: imgurl.image, msrc: imgurl.thumb , w: 1024, h: 7682 } ) 
-      self.slides.push( { src: imgurl.image, msrc: imgurl.thumb , w: 1024, h: 7682 } ) 
+      self.slides.push( imgurl ) 
+      self.slides.push( imgurl ) 
     };
   }
 

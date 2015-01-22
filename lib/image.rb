@@ -12,9 +12,9 @@ class Image
     @name = file_name
     @description = 'dummy'
 
-    @thumb_path = File.expand_path("thumbs/#{album_name}/#{file_name}", base_path)
+    @thumb_path = File.expand_path("scratch/thumbs/#{album_name}/#{file_name}", base_path)
     @thumb = Thumb.new(base_path, album_name, file_name) if File.exists?(thumb_path)
-    @medium_path = File.expand_path("medium/#{album_name}/#{file_name}", base_path)
+    @medium_path = File.expand_path("scratch/medium/#{album_name}/#{file_name}", base_path)
     @medium = Medium.new(base_path, album_name, file_name) if File.exists?(medium_path)
 
     set_dimensions
@@ -33,7 +33,7 @@ class Image
   end
 
   def set_dimensions
-    img_path_to_use = File.exists?(@medium_path) && @medium_path || @path #Prefer medium path to actual path since medium is used in the gallery
+    img_path_to_use = @medium && @medium_path || @path #Prefer medium path to actual path since medium is used in the gallery
     img_sizes = FastImage.size(img_path_to_use) 
     @w = img_sizes.first
     @h = img_sizes.last

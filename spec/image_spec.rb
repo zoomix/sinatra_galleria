@@ -33,7 +33,7 @@ describe Image do
     end
 
     it 'should have a thumb url' do
-      image2.thumb_url.should == 'thumbs/album2/first_image.jpg'
+      image2.thumb_url.should == 'scratch/thumbs/album2/first_image.jpg'
     end
   end
 

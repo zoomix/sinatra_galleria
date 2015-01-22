@@ -37,4 +37,13 @@ describe Image do
     end
   end
 
+  context 'dimensions' do
+    it 'should have a width' do
+      image1.w.should == 625
+    end
+    it 'should have a height' do
+      image1.h.should == 836
+    end
+  end
+
 end

@@ -37,7 +37,27 @@ describe Image do
     end
   end
 
-  context 'dimensions' do
+  context 'medium size images' do
+    it 'should return medium size image if it is present' do
+      image2.medium_url.should == 'scratch/medium/album2/first_image.jpg'
+    end
+
+    it 'should fallback on full size image if no medium is present' do
+      image1.medium_url.should == 'photos/album1/first_image.jpg'
+    end
+  end
+
+
+  context 'dimensions from medium when medium images are generated' do
+    it 'should have a width' do
+      image2.w.should == 375
+    end
+    it 'should have a height' do
+      image2.h.should == 502
+    end
+  end
+
+  context 'dimensions when no medium is generated' do
     it 'should have a width' do
       image1.w.should == 625
     end

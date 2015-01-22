@@ -1,7 +1,7 @@
 - require 'json'
 - @albums.each do |album| 
   - album_name = album.name.tr(' ','_');
-  - urls = album.images.select(&:valid?).map { |image| {:image => image.url.force_encoding('utf-8'), :thumb => image.thumb_url.force_encoding('utf-8')} }
+  - urls = album.images.select(&:valid?).map(&:to_pswph)
 
   %br{style:'clear:left'}
   %h2{:onClick => "javascript:toggle('#{album_name}')"}

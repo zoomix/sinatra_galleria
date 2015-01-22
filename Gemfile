@@ -6,6 +6,7 @@ gem 'tilt'
 gem 'haml'
 gem 'rmagick'
 gem 'exifr'
+gem 'fastimage'
 
 
 group 'test' do

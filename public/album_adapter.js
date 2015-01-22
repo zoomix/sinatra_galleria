@@ -1,5 +1,13 @@
 var albums = {}
 
+function showGallery(albumName, imageIndex) {
+  (new PhotoSwipe(document.querySelectorAll('.pswp')[0], 
+                  PhotoSwipeUI_Default, 
+                  albums[albumName].urls, 
+                  {index: imageIndex} )
+  ).init();
+}
+
 var Album = function(albumName, thumbSize, urls) {
   var self = this;
   self.albumName = albumName;
@@ -19,7 +27,6 @@ var Album = function(albumName, thumbSize, urls) {
     } else {
       $('#' + albumName + '_container').addClass('compact');
     }
-    $('\.' + albumName).photoSwipe();
 
   };
 
@@ -27,9 +34,9 @@ var Album = function(albumName, thumbSize, urls) {
     var htmlz = '';
     for(var i = 0; i < urls.length; i++) {
       if(urls[i]) {
-        htmlz += "<a class='" + albumName + "' href='" + urls[i]['image'] + "'>";
+        htmlz += "<a class='" + albumName + "' href='" + urls[i]['src'] + "' onclick='showGallery(\"" + albumName + "\", " + i + "); return false'>";
         if(fullyVisible || i < nofImagesOnFirstLine) {
-          htmlz += "<img src='" + urls[i]['thumb'] + "' alt='" + albumName + "'>";
+          htmlz += "<img src='" + urls[i]['msrc'] + "' alt='" + albumName + "'>";
         }
         htmlz += "</a>";
       }

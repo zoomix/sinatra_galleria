@@ -6,12 +6,14 @@ var Album = function(albumName, thumbSize, urls) {
   self.thumbSize = thumbSize;
   self.urls = urls;
   self.expanded = false;
+  self.slides = [];
 
   self.renderAlbum = function() {
     var nofImagesOnFirstLine = Math.floor($(window).width() / thumbSize);
     nofImagesOnFirstLine += 1;
 
     var htmlz = self.getAlbumHtml(nofImagesOnFirstLine, self.expanded);
+    self.createSlides();
 
     $('#' + albumName + '_container').html(htmlz);
     if(self.expanded) {
@@ -19,7 +21,6 @@ var Album = function(albumName, thumbSize, urls) {
     } else {
       $('#' + albumName + '_container').addClass('compact');
     }
-    $('\.' + albumName).photoSwipe();
 
   };
 
@@ -36,6 +37,14 @@ var Album = function(albumName, thumbSize, urls) {
     }
     return htmlz;
   };
+
+  self.createSlides = function() {
+    for (var i = 0; i < urls.length; i++) {
+      var imgurl = urls[i];
+      self.slides.push( { src: imgurl.image, msrc: imgurl.thumb , w: 1024, h: 7682 } ) 
+      self.slides.push( { src: imgurl.image, msrc: imgurl.thumb , w: 1024, h: 7682 } ) 
+    };
+  }
 
   return this;
 }

@@ -11,3 +11,12 @@ task :thumb_gen do
     end
   end
 end
+
+# desc "Generats medium size pics"
+# task :med_gen do
+#   Albums.list.each do |album|
+#     album.images.each do |image|
+#       ThumbGenerator.generate_med(image) unless image.med
+#     end
+#   end
+# end

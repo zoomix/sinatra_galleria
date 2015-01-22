@@ -1,19 +1,25 @@
 var albums = {}
 
+function showGallery(albumName, imageIndex) {
+  (new PhotoSwipe(document.querySelectorAll('.pswp')[0], 
+                  PhotoSwipeUI_Default, 
+                  albums[albumName].urls, 
+                  {index: imageIndex} )
+  ).init();
+}
+
 var Album = function(albumName, thumbSize, urls) {
   var self = this;
   self.albumName = albumName;
   self.thumbSize = thumbSize;
   self.urls = urls;
   self.expanded = false;
-  self.slides = [];
 
   self.renderAlbum = function() {
     var nofImagesOnFirstLine = Math.floor($(window).width() / thumbSize);
     nofImagesOnFirstLine += 1;
 
     var htmlz = self.getAlbumHtml(nofImagesOnFirstLine, self.expanded);
-    self.createSlides();
 
     $('#' + albumName + '_container').html(htmlz);
     if(self.expanded) {
@@ -28,7 +34,7 @@ var Album = function(albumName, thumbSize, urls) {
     var htmlz = '';
     for(var i = 0; i < urls.length; i++) {
       if(urls[i]) {
-        htmlz += "<a class='" + albumName + "' href='" + urls[i]['src'] + "'>";
+        htmlz += "<a class='" + albumName + "' href='" + urls[i]['src'] + "' onclick='showGallery(\"" + albumName + "\", " + i + "); return false'>";
         if(fullyVisible || i < nofImagesOnFirstLine) {
           htmlz += "<img src='" + urls[i]['msrc'] + "' alt='" + albumName + "'>";
         }
@@ -37,14 +43,6 @@ var Album = function(albumName, thumbSize, urls) {
     }
     return htmlz;
   };
-
-  self.createSlides = function() {
-    for (var i = 0; i < urls.length; i++) {
-      var imgurl = urls[i];
-      self.slides.push( imgurl ) 
-      self.slides.push( imgurl ) 
-    };
-  }
 
   return this;
 }

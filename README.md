@@ -2,7 +2,7 @@
 
 
 #### What it is
-It's a simple photo alubm / galleria application you run on your server. It serves albums and photos from a folder to the interwebs as simply as it can. Optimally you would have a number of images in in a number of folder in for instance Dropbox or BTSync. If you're runnig linux and like docker, this is gonna be right up your alley.
+It's a simple photo album / galleria application you run on your server. It serves albums and photos from a folder to the interwebs as simply as it can. Optimally you would have a number of images in in a number of folder in for instance Dropbox or BTSync. If you're running linux and like docker, this is gonna be right up your alley.
 
 Sinatra galleria uses [photoswipe](http://www.photoswipe.com/) for displaying photos, although I'm not married to the idea and I may well change my mind again a couple of times.
 
@@ -61,7 +61,7 @@ The folder setup:
 
 #### Running locally
 
-I sincerilly recommend using docker, as above, and mounting in your source folder and starting a bash. Something like this.
+I sincerely recommend using docker, as above, and mounting in your source folder and starting a bash. Something like this.
 
     docker run -v /Users/zoomix/repos/sinatra_galleria:/sinatra_galleria \
                -p 9292:9292 \
@@ -80,11 +80,11 @@ If you're not into sanity and eat imagemagick dependency trees for breakfast, yo
      gem install bundler
      bundle
 
-Before you can see anything you'll need to generate some thumbnails and (optinally) medium sized images for your images. Use the rake-taks.
+Before you can see anything you'll need to generate some thumbnails and (optionally) medium sized images for your images. Use the rake-taks.
 
     rake thumb_gen med_gen
 
-You can put this into a crontab and have it run every day or every couple of hours. It will try to make thumbnails of all image formats it recognizes. It is idempotent and you can kill it and restart it any time and it will continue from where it left off.
+You can put this into a crontab and have it run every day or every couple of hours. It will try to make thumbnails of all image formats it recognises. It is idempotent and you can kill it and restart it any time and it will continue from where it left off.
 
 
 
@@ -111,10 +111,10 @@ I have since tasted the sweet sweet taste of docker freedom. I am now on my way 
 
 I don't know. Masochism? Maybe? That's certainly a part of it. It doesn't really work the way I'd like. But what does ever. =/
 
-I really wanted a simple server to show my images. I wanted it to work on a phone as well as on a desktop. And it's a right of passage for programmers. I sincerely belive that you're not a programmer until you've decided that you need to write your own photo album backend. Until then you're just playing around.
+I really wanted a simple server to show my images. I wanted it to work on a phone as well as on a desktop. And it's a right of passage for programmers. I sincerely believe that you're not a programmer until you've decided that you need to write your own photo album backend. Until then you're just playing around.
 
-That said, I have made a bit of a mess of this code. I hope you're not judging me too harshly. I only ever get to work on it a couple of hours a year and even then I'm usually interrupted by screaming childern and spouses that (quite rightly) have opinions on how I prioritize my tasks. 
+That said, I have made a bit of a mess of this code. I hope you're not judging me too harshly. I only ever get to work on it a couple of hours a year and even then I'm usually interrupted by screaming children and spouses that (quite rightly) have opinions on how I prioritise my tasks. 
 
 
 ## License
-Hah. Lol. Put it this way. If you read this you not entitled in any way to use this application and are soly responsible for all evil it brings your way.
+Hah. Lol. Put it this way. If you read this you not entitled in any way to use this application and are solely responsible for all evil it brings your way.

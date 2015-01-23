@@ -35,8 +35,7 @@ class Image
   def set_dimensions
     img_path_to_use = @medium && @medium_path || @path #Prefer medium path to actual path since medium is used in the gallery
     img_sizes = FastImage.size(img_path_to_use) 
-    @w = img_sizes.first
-    @h = img_sizes.last
+    @w, @h = img_sizes || [0, 0]
   end
 
   def to_pswph
